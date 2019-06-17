@@ -19,6 +19,7 @@ public class tesesetup {
 		  driver=new ChromeDriver();
 		  driver.get("http://10.232.237.143:443/TestMeApp/fetchcat.htm");
 		  driver.manage().window().maximize();
+		  
 		  driver.findElement(By.linkText("SignIn")).click();
 		  driver.findElement(By.id("userName")).sendKeys("Lalitha");
 		  driver.findElement(By.name("password")).sendKeys("password123");
