@@ -1,11 +1,17 @@
 
-Feature: add product
+Feature: Title of your feature
+  I want to use this template for my feature file
 
-  @tag2
-  Scenario Outline: data tables
-  Given logins as admin and add product
-  And give product details
-    Given enter the product name <product>
-      | product   | 
-      | baskeball |     
-      | volleyball|     
+  Scenario Outline: Title of your scenario outline
+  Given I Enters username
+    And I Enters password
+    Then I Enters Login
+    Then I clicks on Add New Poduct
+    Given I want to write a step with "<Product Name>"
+    When I check for the "<Price>" in step
+    Then I verify the "<Quantity>" in step
+   
+    Examples: 
+      | Product Name      | Price   | Quantity |
+      | Basketball        |     500 | 5        |
+      | Vollyball         |     700 | 10       | 

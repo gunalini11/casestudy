@@ -1,29 +1,64 @@
 package cs3;
 
-import cucumber.api.java.en.And;
+import org.openqa.selenium.By;
+import org.openqa.selenium.Keys;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.interactions.Actions;
+
 import cucumber.api.java.en.Given;
+import cucumber.api.java.en.Then;
+import cucumber.api.java.en.When;
 
 public class cs3run {
-	@Given("logins as admin and add product")
-	public void logins_as_admin_and_add_product() {
-	    
+	WebDriver driver;
+	@Given("I Enters username")
+	public void i_Enters_username() {
+		System.setProperty("webdriver.chrome.driver","C:\\Users\\training_c2a.05.08\\Desktop\\Selium 3.0\\Selium 3.0\\chromedriver.exe");
+		  driver=new ChromeDriver();
+		  driver.get("http://10.232.237.143:443/TestMeApp/fetchcat.htm");
+		  driver.manage().window().maximize();
+		  driver.findElement(By.linkText("SignIn")).click();
+		  driver.findElement(By.id("userName")).sendKeys("admin");
+		  
+		  
+	   
 	}
 
-	@And("give product details")
-	public void give_product_details() {
-	    
+	@Given("I Enters password")
+	public void i_Enters_password() {
+		driver.findElement(By.name("password")).sendKeys("password456");
 	}
 
-	@Given("enter the product name baskeball")
-	public void enter_the_product_name_baskeball() {
-	    // Write code here that turns the phrase above into concrete actions
-	    throw new cucumber.api.PendingException();
+	@Then("I Enters Login")
+	public void i_Enters_Login() {
+		driver.findElement(By.cssSelector("body > main > div > div > div > form > fieldset > div:nth-child(8) > div > input.btn.btn-lg.btn-success.col-xs-4.col-md-offset-0")).submit();
 	}
 
-	@Given("enter the product name volleyball")
-	public void enter_the_product_name_volleyball() {
-	    // Write code here that turns the phrase above into concrete actions
-	    throw new cucumber.api.PendingException();
+	@Then("I clicks on Add New Poduct")
+	public void i_clicks_on_Add_New_Poduct() {
+		 driver.findElement(By.xpath("/html/body/main/div/div/div/div[1]/button/h4")).click();
+		 Actions b=new Actions(driver);
+		   driver.findElement(By.cssSelector("#categorydropid")).click();
+		   b.sendKeys(Keys.ARROW_DOWN).sendKeys(Keys.ARROW_DOWN).sendKeys(Keys.ARROW_DOWN).sendKeys(Keys.ARROW_DOWN).sendKeys(Keys.ARROW_DOWN).sendKeys(Keys.ARROW_DOWN).sendKeys(Keys.ENTER).build().perform();
+	}
+
+	@Given("I want to write a step with {string}")
+	public void i_want_to_write_a_step_with(String string) {
+		driver.findElement(By.xpath("//*[@id=\"prodid\"]")).sendKeys(string);
+	}
+
+	@When("I check for the {string} in step")
+	public void i_check_for_the_in_step(String string) {
+		driver.findElement(By.xpath("//*[@id=\"priceid\"]")).sendKeys(string);
+	}
+
+	@Then("I verify the {string} in step")
+	public void i_verify_the_in_step(String string) {
+		driver.findElement(By.xpath("//*[@id=\"quantityid\"]")).sendKeys(string);
+		driver.findElement(By.xpath("//*[@id=\"brandid\"]")).sendKeys("nike");
+		driver.findElement(By.xpath("//*[@id=\"description\"]")).sendKeys("ball");
+		driver.findElement(By.xpath("/html/body/main/div/div/div/form/fieldset/div[10]/div/input[1]")).click();
 	}
 
 }
